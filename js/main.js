@@ -126,6 +126,21 @@ function deleteNumber() {
     }
 }
 
+// Keyboard support
+function handleKeyboardInput(e) {
+    if (e.key >= "0" && e.key <= "9") appendNumber(e.key);
+    if (e.key === ".") appendDecimal();
+    if (e.key === "=" || e.key === "Enter") {
+        e.preventDefault(); // Pressing enter doesn't press the last button highlighted by HTML
+        evaluate();
+    }
+    if (e.key === "Backspace") deleteNumber();
+    if (e.key === "Escape") clearCalculator();
+    if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
+        setOperator(e.key);
+    }
+}
+
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
         appendNumber(button.textContent);
@@ -142,3 +157,4 @@ equalsButton.addEventListener("click", evaluate);
 clearButton.addEventListener("click", clearCalculator);
 decimalButton.addEventListener("click", appendDecimal);
 deleteButton.addEventListener("click", deleteNumber);
+window.addEventListener("keydown", handleKeyboardInput);
