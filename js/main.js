@@ -29,6 +29,8 @@ const numberButtons = document.querySelectorAll(".btn-number");
 const operatorButtons = document.querySelectorAll(".btn-operator");
 const equalsButton = document.querySelector("#equals");
 const clearButton = document.querySelector("#clear");
+const decimalButton = document.querySelector("#decimal");
+const deleteButton = document.querySelector("#delete");
 
 // Used to round long decimals
 function roundResult(number) {
@@ -91,6 +93,27 @@ function clearCalculator() {
     display.textContent = "0";
 }
 
+// Decimal functionality
+function appendDecimal() {
+    if (operator === null) {
+        if (shouldResetFirstNumber) {
+            firstNumber = "0";
+            shouldResetFirstNumber = false;
+        }
+        if (firstNumber === "") firstNumber = "0";
+        if (firstNumber.includes(".")) return;
+
+        firstNumber += ".";
+        display.textContent = firstNumber;
+    } else {
+        if (secondNumber === "") secondNumber = "0";
+        if (secondNumber.includes(".")) return;
+
+        secondNumber += ".";
+        display.textContent = secondNumber;
+    }
+}
+
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
         appendNumber(button.textContent);
@@ -105,3 +128,4 @@ operatorButtons.forEach((button) => {
 
 equalsButton.addEventListener("click", evaluate);
 clearButton.addEventListener("click", clearCalculator);
+decimalButton.addEventListener("click", appendDecimal);
