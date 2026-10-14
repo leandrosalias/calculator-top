@@ -114,6 +114,18 @@ function appendDecimal() {
     }
 }
 
+// Backspace button functionality
+function deleteNumber() {
+    if (operator === null) {
+        if (shouldResetFirstNumber) return;
+        firstNumber = firstNumber.slice(0, -1);
+        display.textContent = firstNumber || "0";
+    } else {
+        secondNumber = secondNumber.slice(0, -1);
+        display.textContent = secondNumber || "0";
+    }
+}
+
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
         appendNumber(button.textContent);
@@ -129,3 +141,4 @@ operatorButtons.forEach((button) => {
 equalsButton.addEventListener("click", evaluate);
 clearButton.addEventListener("click", clearCalculator);
 decimalButton.addEventListener("click", appendDecimal);
+deleteButton.addEventListener("click", deleteNumber);
