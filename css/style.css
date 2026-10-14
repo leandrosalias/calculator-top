@@ -1,0 +1,23 @@
+.calculator {
+    width: 300px;
+    border: 2px solid #333;
+    padding: 10px;
+}
+
+.display {
+    background-color: #eee;
+    padding: 15px;
+    font-size: 24px;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.row {
+    display: flex;
+}
+
+button {
+    flex: 1;
+    padding: 15px;
+    font-size: 18px;
+}
